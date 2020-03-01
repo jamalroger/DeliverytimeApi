@@ -98,5 +98,10 @@ class ModelSeeder extends Seeder
 
         foreach ($deliveryTime as $d)
             DeliveryTime::create($d);
+
+        City::find(1)->DeliveryTime()->attach([3,4]);
+        City::find(2)->DeliveryTime()->attach([1,2]);
+        City::find(3)->DeliveryTime()->attach([5,6,7]);
+
     }
 }

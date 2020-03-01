@@ -63,10 +63,7 @@ class RestController extends Controller
 
         $delivery_times = (array) $request->delivery_time;
 
-        foreach ($delivery_times as $delivery_time) {
-
-            $city->deliveryTime()->attach($delivery_time);
-        }
+        $city->deliveryTime()->attach($delivery_times);
 
         return $city->deliveryTime;
     }
@@ -81,7 +78,7 @@ class RestController extends Controller
         for ($i = 0; $i < $number_of_days; $i++) {
 
             $date = today()->addDays($i);
-            if (ExceptionDay::where('day_name', $date->dayName)->orWhere('date',$date)->get()->count() > 0) // if exceptionDays jumps
+            if (ExceptionDay::where('day_name', $date->dayName)->orWhere('date', $date)->get()->count() > 0) // if exceptionDays jumps
                 continue;
             $resulta['dates'][] = [
                 'day_name' => $date->dayName,
